@@ -13,12 +13,68 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+     #include <stdlib.h>
+     #define SIZE 5   
+    int stack[SIZE];
+     int top = -1;
+     void display() {
+        if (top == -1) {
+            printf("Stack is empty\n");
+            return;
+        }
+        printf("Stack contents: ");
+        for (int i = top; i >= 0; i--) {
+            printf("%d ", stack[i]);
+        }
+        printf("\n");
+     }
+     void push(int value) {
+        if (top == SIZE - 1) {
+            printf("Stack Overflow! Cannot push %d\n", value);
+            return;
+        }
+        stack[++top] = value;
+        printf("%d pushed into stack\n", value);
+     }
+     void pop() {
+        if (top == -1) {
+            printf("Stack Underflow! Cannot pop\n");
+            return;
+        }
+        printf("%d popped from stack\n", stack[top--]);
+     }
+     int main() {
+        int choice, value;
+     while (1) {
+        printf("\n--- Stack Menu ---\n");
+        printf("1. Push\n2. Pop\n3. Display\n4. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                printf("Enter value to push: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+            case 2:
+                pop();
+                 break;
+    case 3:
+    display();
+    break;
+    case 4:
+    exit(0);
+    default:
+    printf("Invalid choice!\n");
+    }
+    }
+    return 0;
+    }
 
 Output:
 
-//paste your output here
-
+<img width="1570" height="919" alt="image" src="https://github.com/user-attachments/assets/b55d0664-d211-43ae-a461-57af44981230" />
 
 
 Result:
@@ -36,14 +92,35 @@ Algorithm:
  
 Program:
 
-//type your code here
+     #include <stdio.h>
+     #define SIZE 5  
+    float stack[SIZE];
+     int top = -1;
+     void push(float value) 
+    {
+     if (top == SIZE - 1) {
+     printf("Stack Overflow! Cannot push %.2f\n", value);
+     return;
+     }
+     stack[++top] = value;
+     printf("%.2f pushed into stack\n", value);
+     }
+     int main() {
+     // Stack already initialized with top = -1
+     push(10.5);
+     push(20.75);
+     push(30.1);
+     printf("\nCurrent stack contents:\n");
+     for (int i = top; i >= 0; i--) {
+     printf("%.2f ", stack[i]);
+     }
+     printf("\n");
+     return 0;
+     }
 
 Output:
 
-//paste your output here
-
-
-
+<img width="1209" height="765" alt="image" src="https://github.com/user-attachments/assets/08a4b3b8-61f1-4b77-a259-bcbf5c485f10" />
 
 Result:
 Thus, the program to push the given element in to a stack using array is verified successfully
@@ -62,11 +139,58 @@ Algorithm:
  
 Program:
 
-//type your code here
+     #include <stdio.h>
+     #include <stdlib.h>
+     #define SIZE 5
+     int queue[SIZE];
+     int front = -1, rear = -1;
+     void display() {
+     if (front == -1) {
+     printf("Queue is empty\n");
+     return;
+     }
+     printf("Queue contents: ");
+     for (int i = front; i <= rear; i++) {
+     printf("%d ", queue[i]);
+     }
+     printf("\n");
+     }
+     void enqueue(int value) {
+     if (rear == SIZE - 1) {
+     printf("Queue Overflow! Cannot insert %d\n", value);
+     return;
+     }
+     if (front == -1) front = 0; 
+    queue[++rear] = value;
+     printf("%d enqueued into queue\n", value);
+     }
+     void dequeue() {
+     if (front == -1 || front > rear) {
+     printf("Queue Underflow! Cannot dequeue\n");
+     return;
+     }
+     printf("%d dequeued from queue\n", queue[front++]);
+     if (front > rear) { 
+    front = rear = -1;
+     }
+     }
+     int main() {
+     enqueue(10);
+     enqueue(20);
+     enqueue(30);
+     display();
+     dequeue();
+     display();
+     enqueue(40);
+     enqueue(50);
+     enqueue(60);
+     display();
+     return 0;
+     }
 
 Output:
 
-//paste your output here
+<img width="1529" height="932" alt="image" src="https://github.com/user-attachments/assets/26f04692-49e9-4de6-ac7f-7ed496c3f375" />
 
 
 Result:
@@ -86,16 +210,36 @@ Algorithm:
 
 Program:
 
-//type your code here
+     #include <stdio.h>
+     #include <stdlib.h>
+     #define SIZE 5  
+    float queue[SIZE];
+     int front = -1, rear = -1;
+     void enqueue(float value) {
+     if (rear == SIZE - 1) {
+     printf("Queue Overflow! Cannot insert %.2f\n", value);
+     return;
+     }
+     if (front == -1) front = 0;  
+    queue[++rear] = value;
+     printf("%.2f enqueued into queue\n", value);
+     }
+     int main() {
+     enqueue(10.5);
+     enqueue(20.25);
+     enqueue(30.75);
+     enqueue(40.0);
+     enqueue(50.99);
+     enqueue(60.6);  
+    return 0;
+     }
 
 Output:
 
-//paste your output here
+<img width="904" height="563" alt="image" src="https://github.com/user-attachments/assets/c9777fa3-6234-4e9f-a3d4-5476ff9934e9" />
 
 Result:
 Thus, the program to insert elements in queue using array is verified successfully.
-
-
 
  
 EXP NO:15 C FUNCTION TO DELETE ELEMENTS IN QUEUE USING ARRAY
@@ -121,12 +265,46 @@ o	After deletion, check if the front pointer has passed the rear pointer (front 
 
 Program:
 
-//type your code here
+     #include <stdio.h>
+     #include <stdlib.h>
+     #define SIZE 5
+     float queue[SIZE];
+     int front = -1, rear = -1;
+     void enqueue(float value) {
+     if (rear == SIZE - 1) {
+     printf("Queue Overflow! Cannot insert %.2f\n", value);
+     return;
+     }
+     if (front == -1) front = 0; 
+    queue[++rear] = value;
+     printf("%.2f enqueued\n", value);
+     }
+     void dequeue() 
+    {
+     if (front == -1) {
+     printf("Queue Underflow! Nothing to delete.\n");
+     return;
+     }
+      printf("%.2f dequeued\n", queue[front]);
+     front++;
+     if (front > rear) {
+     front = rear = -1; 
+    }
+     }
+     int main() {
+     enqueue(10.5);
+     enqueue(20.25);
+     enqueue(30.75);
+     dequeue(); 
+    dequeue(); 
+    dequeue(); 
+    dequeue(); 
+    return 0;
+     }
 
 Output:
 
-//paste your output here
-
+<img width="930" height="574" alt="image" src="https://github.com/user-attachments/assets/7ec058b3-69c5-4cae-998c-5c7260bffd04" />
 
 Result:
 Thus, the function that deletes an element from a queue implemented using an array is verified successfully.
